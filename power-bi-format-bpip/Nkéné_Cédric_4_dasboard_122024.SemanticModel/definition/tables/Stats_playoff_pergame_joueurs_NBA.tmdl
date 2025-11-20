@@ -1,0 +1,663 @@
+table Stats_playoff_pergame_joueurs_NBA
+	lineageTag: a83139fb-698b-41e6-b7dc-d4adaf87f282
+
+	measure 3% = ```
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[3P%]),
+			    ALL(Stats_playoff_pergame_joueurs_NBA[Team])
+			)
+			
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: b7313d89-1694-4428-9a08-67284de7c17d
+
+	measure BLK_Team = ```
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[BLK]),
+			    ALL(Stats_playoff_pergame_joueurs_NBA[Team])
+			)
+			
+			```
+		lineageTag: 5ae1a057-d6ee-4bfd-a7d2-75a4294d7ded
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure BLK_BOS = ```
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[BLK]),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "BOS"
+			)
+			
+			```
+		lineageTag: 68c8bf66-2806-4899-b0c7-b2b778693fc4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ATS_BOS =
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[AST]),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "BOS"
+			)
+		lineageTag: 3cab6686-d183-4c23-b662-b32ef3b84d7d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AST_TEAM =
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[AST]),
+			    ALL(Stats_playoff_pergame_joueurs_NBA[Team])
+			)
+		lineageTag: 2ba6b489-57b7-4271-9f39-aeb50958058f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TRB_Team =
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[TRB]),
+			    ALL(Stats_playoff_pergame_joueurs_NBA[Team])
+			)
+		lineageTag: a452d025-80d2-4835-b5f4-ce6269cb4c84
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure STL_Team =
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[STL]),
+			    ALL(Stats_playoff_pergame_joueurs_NBA[Team])
+			)
+		lineageTag: 508dd4d2-e5b1-41cd-9ac9-7636140145c8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure BLK_DEN =
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[BLK]),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "DEN"
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 7114617c-13f1-4b61-b4af-8cf22c175981
+
+	measure ATS_DEN =
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[AST]),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "DEN"
+			)
+		lineageTag: 6308e080-a0ea-4453-8f99-e17c1568d568
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '3P% Équipe Sélectionnée' = ```
+			
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[3P%]),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = SELECTEDVALUE('Stats_playoff_pergame_joueurs_NBA'[Team], "Aucune équipe sélectionnée")
+			)
+			
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 7f632bb0-bee2-405a-bc1d-404a1f8c4c92
+
+	measure '2P% Équipe Sélectionnée' =
+			
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[2P%]),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = SELECTEDVALUE('Stats_playoff_pergame_joueurs_NBA'[Team], "Aucune équipe sélectionnée")
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 86220a79-9a37-4c05-962e-202645d8ce95
+
+	measure 'AST Équipe Sélectionnée' =
+			
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[AST]),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = SELECTEDVALUE('Stats_playoff_pergame_joueurs_NBA'[Team], "Aucune équipe sélectionnée")
+			)
+		lineageTag: 0555a428-892b-448c-80d0-5053928e1fab
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'BLK Équipe Sélectionnée' =
+			
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[BLK]),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = SELECTEDVALUE('Stats_playoff_pergame_joueurs_NBA'[Team], "Aucune équipe sélectionnée")
+			)
+		lineageTag: 9a21bc33-c5fd-45b2-a8d3-662c13268a66
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'STL Équipe Sélectionnée' =
+			
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[STL]),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = SELECTEDVALUE('Stats_playoff_pergame_joueurs_NBA'[Team], "Aucune équipe sélectionnée")
+			)
+		lineageTag: 50ee1ca3-06bd-4696-8833-30609e2bd44e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TRB Équipe Sélectionnée' =
+			
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[TRB]),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = SELECTEDVALUE('Stats_playoff_pergame_joueurs_NBA'[Team], "Aucune équipe sélectionnée")
+			)
+		lineageTag: 7f410c49-b8fa-440f-a68a-eed9bca301fc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Couleur_Équipe = ```
+			
+			SWITCH(
+			    SELECTEDVALUE('Stats_playoff_pergame_joueurs_NBA'[Team], "Aucune équipe sélectionnée"),
+			    "ATL", "#E03A3E", -- Atlanta Hawks
+			    "BOS", "#007A33", -- Boston Celtics
+			    "BKN", "#000000", -- Brooklyn Nets
+			    "CHA", "#1D1160", -- Charlotte Hornets
+			    "CHI", "#CE1141", -- Chicago Bulls
+			    "CLE", "#72253d", -- Cleveland Cavaliers
+			    "DAL", "#00538C", -- Dallas Mavericks
+			    "DEN", "#0E2240", -- Denver Nuggets
+			    "DET", "#C8102E", -- Detroit Pistons
+			    "GSW", "#1D428A", -- Golden State Warriors
+			    "HOU", "#CE1141", -- Houston Rockets
+			    "IND", "#002D62", -- Indiana Pacers
+			    "LAC", "#C8102E", -- Los Angeles Clippers
+			    "LAL", "#FDB927", -- Los Angeles Lakers
+			    "MEM", "#5D76A9", -- Memphis Grizzlies
+			    "MIA", "#98002E", -- Miami Heat
+			    "MIL", "#00471B", -- Milwaukee Bucks
+			    "MIN", "#002a5c", -- Minnesota Timberwolves
+			    "NOP", "#0C2340", -- New Orleans Pelicans
+			    "NYK", "#006BB6", -- New York Knicks
+			    "OKC", "#007AC1", -- Oklahoma City Thunder
+			    "ORL", "#0077C0", -- Orlando Magic
+			    "PHI", "#006BB6", -- Philadelphia 76ers
+			    "PHX", "#1D1160", -- Phoenix Suns
+			    "POR", "#E03A3E", -- Portland Trail Blazers
+			    "SAC", "#5A2D81", -- Sacramento Kings
+			    "SAS", "#C4CED4", -- San Antonio Spurs
+			    "TOR", "#CE1141", -- Toronto Raptors
+			    "UTA", "#002B5C", -- Utah Jazz
+			    "WAS", "#002B5C", -- Washington Wizards
+			    "#D3D3D3" -- Gris par défaut si aucune équipe sélectionnée
+			)
+			
+			```
+		lineageTag: b195cc9b-9e32-4fab-b961-fb73ab9d6682
+
+	measure Couleur_Équipe_Secondaire = ```
+			
+			SWITCH(
+			    SELECTEDVALUE('Stats_playoff_pergame_joueurs_NBA'[Team], "Aucune équipe sélectionnée"),
+			    "ATL", "#C1D32F", -- Atlanta Hawks
+			    "BOS", "#BA9653", -- Boston Celtics
+			    "BKN", "#FFFFFF", -- Brooklyn Nets
+			    "CHA", "#00788C", -- Charlotte Hornets
+			    "CHI", "#000000", -- Chicago Bulls
+			    "CLE", "#b4975a", -- Cleveland Cavaliers
+			    "DAL", "#B8C4CA", -- Dallas Mavericks
+			    "DEN", "#FEC524", -- Denver Nuggets
+			    "DET", "#1D42BA", -- Detroit Pistons
+			    "GSW", "#FFC72C", -- Golden State Warriors
+			    "HOU", "#000000", -- Houston Rockets
+			    "IND", "#FDBB30", -- Indiana Pacers
+			    "LAC", "#1D428A", -- Los Angeles Clippers
+			    "LAL", "#552583", -- Los Angeles Lakers
+			    "MEM", "#12173F", -- Memphis Grizzlies
+			    "MIA", "#F9A01B", -- Miami Heat
+			    "MIL", "#EEE1C6", -- Milwaukee Bucks
+			    "MIN", "#7ac142", -- Minnesota Timberwolves
+			    "NOP", "#C8102E", -- New Orleans Pelicans
+			    "NYK", "#F58426", -- New York Knicks
+			    "OKC", "#EF3B24", -- Oklahoma City Thunder
+			    "ORL", "#C4CED4", -- Orlando Magic
+			    "PHI", "#ED174C", -- Philadelphia 76ers
+			    "PHX", "#E56020", -- Phoenix Suns
+			    "POR", "#000000", -- Portland Trail Blazers
+			    "SAC", "#63727A", -- Sacramento Kings
+			    "SAS", "#000000", -- San Antonio Spurs
+			    "TOR", "#000000", -- Toronto Raptors
+			    "UTA", "#FDB927", -- Utah Jazz
+			    "WAS", "#E31837", -- Washington Wizards
+			    "#D3D3D3" -- Gris par défaut si aucune équipe sélectionnée
+			)
+			
+			```
+		lineageTag: de03b35b-6538-4a46-836d-cf702c1b5028
+
+	measure FT%_TEAM =
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[FT%]),
+			    ALL(Stats_playoff_pergame_joueurs_NBA[Team])
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: fd9e0369-d9c5-4e83-9619-61369f1f3287
+
+	measure 'FT% Équipe Sélectionnée' =
+			
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[FT%]),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = SELECTEDVALUE('Stats_playoff_pergame_joueurs_NBA'[Team], "Aucune équipe sélectionnée")
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 70663ca4-a93a-408c-86ce-737592a4989a
+
+	measure 'Moyenne 2Pts Autres' = ```
+			
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[2P%]),
+			    ALL(Stats_playoff_pergame_joueurs_NBA[Team])
+			)
+			
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 8c93ab07-86af-4df8-92a3-19c7296952c2
+
+	measure _Titre2P = ```
+			
+			VAR EquipeSel = SELECTEDVALUE(Stats_playoff_pergame_joueurs_NBA[Team], "All Teams")
+			RETURN "2P% All Teams vs 2P% " & EquipeSel
+			
+			```
+		lineageTag: ea7da9be-d61e-4eba-bbe6-388c2bb834c8
+
+	measure _Titre3P =
+			
+			VAR EquipeSel = SELECTEDVALUE(Stats_playoff_pergame_joueurs_NBA[Team], "All Teams")
+			RETURN "3P% All Teams vs 3P% " & EquipeSel
+		lineageTag: a991dbdd-642c-4291-9ae9-b8e661e167d0
+
+	measure _TitreBLK =
+			
+			VAR EquipeSel = SELECTEDVALUE(Stats_playoff_pergame_joueurs_NBA[Team], "All Teams")
+			RETURN "BLK All Teams vs BLK " & EquipeSel
+		lineageTag: 1f149450-dc1f-4513-8263-0b4595ea71ee
+
+	measure _TitreAST =
+			
+			VAR EquipeSel = SELECTEDVALUE(Stats_playoff_pergame_joueurs_NBA[Team], "All Teams")
+			RETURN "AST All Teams vs AST " & EquipeSel
+		lineageTag: f662c15b-8f84-4a5f-b937-2ff35ff9c273
+
+	measure _TitreSTL =
+			
+			VAR EquipeSel = SELECTEDVALUE(Stats_playoff_pergame_joueurs_NBA[Team], "All Teams")
+			RETURN "STL All Teams vs STL " & EquipeSel
+		lineageTag: 2a299a2a-82e4-493e-b7cb-ba1d634ecdf6
+
+	measure _TitreTRB =
+			
+			VAR EquipeSel = SELECTEDVALUE(Stats_playoff_pergame_joueurs_NBA[Team], "All Teams")
+			RETURN "TRB All Teams vs TRB " & EquipeSel
+		lineageTag: 4da47a74-fe8a-4438-bc92-ed1763b3fbd4
+
+	measure _TitreFT% =
+			
+			VAR EquipeSel = SELECTEDVALUE(Stats_playoff_pergame_joueurs_NBA[Team], "All Teams")
+			RETURN "FT% All Teams vs FT% " & EquipeSel
+		lineageTag: 9bd08a8b-d08b-4734-9f33-ef4d06b0c5da
+
+	measure 'PTS Équipe Sélectionnée' =
+			
+			CALCULATE(
+			    AVERAGE('Stats_playoff_pergame_joueurs_NBA'[PTS]),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = SELECTEDVALUE('Stats_playoff_pergame_joueurs_NBA'[Team], "Aucune équipe sélectionnée")
+			)
+		lineageTag: 933e992e-1108-48b6-88c4-829082e92b47
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Rk
+		dataType: int64
+		formatString: 0
+		lineageTag: 503e8081-4176-4b24-91d8-507bfa2a3e94
+		summarizeBy: sum
+		sourceColumn: Rk
+
+		annotation SummarizationSetBy = Automatic
+
+	column Player
+		dataType: string
+		lineageTag: 4412e116-65cf-4c75-bed9-d535a0d59e81
+		summarizeBy: none
+		sourceColumn: Player
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 48c0751c-2df4-449c-9945-7cd60120cc65
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Team
+		dataType: string
+		lineageTag: 31d342bb-be37-401a-9898-e24b00bdaba5
+		summarizeBy: none
+		sourceColumn: Team
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pos
+		dataType: string
+		lineageTag: a6836c26-07ab-49be-aeac-e38380dd7b32
+		summarizeBy: none
+		sourceColumn: Pos
+
+		annotation SummarizationSetBy = Automatic
+
+	column G
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b5fcc33-c661-40cb-a54a-e82ae4425d23
+		summarizeBy: sum
+		sourceColumn: G
+
+		annotation SummarizationSetBy = Automatic
+
+	column GS
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c2e70b1-349e-4278-98bb-666cdd1e9d9e
+		summarizeBy: sum
+		sourceColumn: GS
+
+		annotation SummarizationSetBy = Automatic
+
+	column MP
+		dataType: double
+		lineageTag: 92789d0f-d9d9-44ef-91a5-347f925e814d
+		summarizeBy: sum
+		sourceColumn: MP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FG
+		dataType: double
+		lineageTag: 3ddb5cf0-2d4c-4323-a182-1e7ababf935f
+		summarizeBy: sum
+		sourceColumn: FG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FGA
+		dataType: double
+		lineageTag: 047eb2e1-1dee-4852-a765-bc1545a60fa4
+		summarizeBy: sum
+		sourceColumn: FGA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FG%
+		dataType: double
+		lineageTag: 1bf37979-f589-4290-8b8e-4ec1b3f59aca
+		summarizeBy: sum
+		sourceColumn: FG%
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 3P
+		dataType: double
+		lineageTag: 58501025-cba7-4846-ab3d-67f445ea93b5
+		summarizeBy: sum
+		sourceColumn: 3P
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 3PA
+		dataType: double
+		lineageTag: 4d6f6ffa-16e0-4092-87ca-27f013c345c7
+		summarizeBy: sum
+		sourceColumn: 3PA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 3P%
+		dataType: double
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 9cff8db6-9bc6-4a33-a250-8d2d626fbd2b
+		summarizeBy: sum
+		sourceColumn: 3P%
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2P
+		dataType: double
+		lineageTag: 35c34d46-f895-4b16-9d08-01550f39474d
+		summarizeBy: sum
+		sourceColumn: 2P
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2PA
+		dataType: double
+		lineageTag: aef6fb18-f718-4875-9d57-b7cab4b85e4b
+		summarizeBy: sum
+		sourceColumn: 2PA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2P%
+		dataType: double
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: cf97b163-b82c-4241-a3f2-0458acd06a9c
+		summarizeBy: sum
+		sourceColumn: 2P%
+
+		annotation SummarizationSetBy = Automatic
+
+	column eFG%
+		dataType: double
+		lineageTag: 5a8c780f-76ce-4150-9432-a63181fc266d
+		summarizeBy: sum
+		sourceColumn: eFG%
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FT
+		dataType: double
+		lineageTag: 159b56d5-87f4-411f-8094-181e29ee5fee
+		summarizeBy: sum
+		sourceColumn: FT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FTA
+		dataType: double
+		lineageTag: 93c310c2-29d4-403d-9e6f-b74b48c07988
+		summarizeBy: sum
+		sourceColumn: FTA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FT%
+		dataType: double
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: d20b976b-a4fc-43b1-9738-11432228e1eb
+		summarizeBy: sum
+		sourceColumn: FT%
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORB
+		dataType: double
+		lineageTag: 4e90b8c1-8bae-40c9-9650-741cc30acddf
+		summarizeBy: sum
+		sourceColumn: ORB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DRB
+		dataType: double
+		lineageTag: a4e65a8f-4d55-47a7-a46b-ddb2a1890e83
+		summarizeBy: sum
+		sourceColumn: DRB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TRB
+		dataType: double
+		lineageTag: b8212bae-286f-4a61-ad50-c0aadd36a9de
+		summarizeBy: sum
+		sourceColumn: TRB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AST
+		dataType: double
+		lineageTag: dfa6b5d2-f5df-43de-a95c-e8cc827bd1a0
+		summarizeBy: sum
+		sourceColumn: AST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column STL
+		dataType: double
+		lineageTag: 3d2fa2a2-ba8f-4d7f-9b07-54e458f4908d
+		summarizeBy: sum
+		sourceColumn: STL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BLK
+		dataType: double
+		lineageTag: ee2f1f7d-8483-42b3-aca8-3399af74528d
+		summarizeBy: sum
+		sourceColumn: BLK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOV
+		dataType: double
+		lineageTag: 800cc000-1761-4c76-b1e2-8f193597b807
+		summarizeBy: sum
+		sourceColumn: TOV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PF
+		dataType: double
+		lineageTag: e6bb2763-9b0e-4a1b-b601-f4f53d83e76d
+		summarizeBy: sum
+		sourceColumn: PF
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PTS
+		dataType: double
+		lineageTag: 1b3ba42a-1a57-48cd-bf27-d2c801b4a584
+		summarizeBy: sum
+		sourceColumn: PTS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Awards
+		dataType: string
+		lineageTag: 16ecbb1e-51e8-453b-912b-530de3245a1b
+		summarizeBy: none
+		sourceColumn: Awards
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season
+		dataType: int64
+		formatString: 0
+		lineageTag: 3dd57cde-df6d-43c0-837a-cb05c68d2b36
+		summarizeBy: sum
+		sourceColumn: Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOGO
+		dataType: string
+		lineageTag: 15ee5bf4-fb48-4a33-8b63-9c9f70f56a22
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: LOGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ImageURL =
+			
+			SWITCH(
+			    TRUE(),
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "BOS" && 'Stats_playoff_pergame_joueurs_NBA'[Season] = 2024, "https://e7.pngegg.com/pngimages/672/894/png-clipart-brass-colored-championship-trophy-2016-nba-finals-national-basketball-association-awards-larry-o-brien-championship-trophy-nba-most-valuable-player-award-world-cup-sport-sports-thumbnail.png",
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "DEN" && 'Stats_playoff_pergame_joueurs_NBA'[Season] = 2023, "https://e7.pngegg.com/pngimages/672/894/png-clipart-brass-colored-championship-trophy-2016-nba-finals-national-basketball-association-awards-larry-o-brien-championship-trophy-nba-most-valuable-player-award-world-cup-sport-sports-thumbnail.png",
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "GSW" && 'Stats_playoff_pergame_joueurs_NBA'[Season] = 2022, "https://e7.pngegg.com/pngimages/672/894/png-clipart-brass-colored-championship-trophy-2016-nba-finals-national-basketball-association-awards-larry-o-brien-championship-trophy-nba-most-valuable-player-award-world-cup-sport-sports-thumbnail.png",
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "MIL" && 'Stats_playoff_pergame_joueurs_NBA'[Season] = 2021, "https://e7.pngegg.com/pngimages/672/894/png-clipart-brass-colored-championship-trophy-2016-nba-finals-national-basketball-association-awards-larry-o-brien-championship-trophy-nba-most-valuable-player-award-world-cup-sport-sports-thumbnail.png",
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "LAL" && 'Stats_playoff_pergame_joueurs_NBA'[Season] = 2020, "https://e7.pngegg.com/pngimages/672/894/png-clipart-brass-colored-championship-trophy-2016-nba-finals-national-basketball-association-awards-larry-o-brien-championship-trophy-nba-most-valuable-player-award-world-cup-sport-sports-thumbnail.png",
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "RAT" && 'Stats_playoff_pergame_joueurs_NBA'[Season] = 2019, "https://e7.pngegg.com/pngimages/672/894/png-clipart-brass-colored-championship-trophy-2016-nba-finals-national-basketball-association-awards-larry-o-brien-championship-trophy-nba-most-valuable-player-award-world-cup-sport-sports-thumbnail.png",
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "GSW" && 'Stats_playoff_pergame_joueurs_NBA'[Season] = 2018, "https://e7.pngegg.com/pngimages/672/894/png-clipart-brass-colored-championship-trophy-2016-nba-finals-national-basketball-association-awards-larry-o-brien-championship-trophy-nba-most-valuable-player-award-world-cup-sport-sports-thumbnail.png",
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "GSW" && 'Stats_playoff_pergame_joueurs_NBA'[Season] = 2017, "https://e7.pngegg.com/pngimages/672/894/png-clipart-brass-colored-championship-trophy-2016-nba-finals-national-basketball-association-awards-larry-o-brien-championship-trophy-nba-most-valuable-player-award-world-cup-sport-sports-thumbnail.png",
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "CLE" && 'Stats_playoff_pergame_joueurs_NBA'[Season] = 2016, "https://e7.pngegg.com/pngimages/672/894/png-clipart-brass-colored-championship-trophy-2016-nba-finals-national-basketball-association-awards-larry-o-brien-championship-trophy-nba-most-valuable-player-award-world-cup-sport-sports-thumbnail.png",
+			    'Stats_playoff_pergame_joueurs_NBA'[Team] = "GSW" && 'Stats_playoff_pergame_joueurs_NBA'[Season] = 2015, "https://e7.pngegg.com/pngimages/672/894/png-clipart-brass-colored-championship-trophy-2016-nba-finals-national-basketball-association-awards-larry-o-brien-championship-trophy-nba-most-valuable-player-award-world-cup-sport-sports-thumbnail.png",
+			    "https://cdn-icons-png.flaticon.com/512/15/15287.png"
+			)
+		lineageTag: b1e51e7d-f5aa-4dc1-a47a-540041c9fa12
+		dataCategory: ImageUrl
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Stats_playoff_pergame_joueurs_NBA = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ZCWZ3296\OneDrive - orange.com\Bureau\OpenClasseroom\Projet 8\ajout kd et autre\stats_playoff_pergame2.csv"),[Delimiter=";", Columns=33, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Rk", Int64.Type}, {"Player", type text}, {"Age", Int64.Type}, {"Team", type text}, {"Pos", type text}, {"G", Int64.Type}, {"GS", Int64.Type}, {"MP", type number}, {"FG", type number}, {"FGA", type number}, {"FG%", type number}, {"3P", type number}, {"3PA", type number}, {"3P%", type number}, {"2P", type number}, {"2PA", type number}, {"2P%", type number}, {"eFG%", type number}, {"FT", type number}, {"FTA", type number}, {"FT%", type number}, {"ORB", type number}, {"DRB", type number}, {"TRB", type number}, {"AST", type number}, {"STL", type number}, {"BLK", type number}, {"TOV", type number}, {"PF", type number}, {"PTS", type number}, {"Awards", type text}, {"Season", Int64.Type}, {"", type text}}),
+				    #"Colonne conditionnelle ajoutée" = Table.AddColumn(#"Type modifié", "LOGO", each if [Team] = "BOS" then "https://upload.wikimedia.org/wikipedia/fr/thumb/6/65/Celtics_de_Boston_logo.svg/2048px-Celtics_de_Boston_logo.svg.png" else if [Team] = "DEN" then "https://upload.wikimedia.org/wikipedia/fr/3/35/Nuggets_de_Denver_2018.png" else if [Team] = "ATL" then "https://upload.wikimedia.org/wikipedia/en/thumb/2/24/Atlanta_Hawks_logo.svg/1200px-Atlanta_Hawks_logo.svg.png" else if [Team] = "BKN" then "https://upload.wikimedia.org/wikipedia/fr/4/49/Nets_de_Brooklyn_2024.png" else if [Team] = "MIA" then "https://upload.wikimedia.org/wikipedia/en/thumb/f/fb/Miami_Heat_logo.svg/1200px-Miami_Heat_logo.svg.png" else if [Team] = "OKC" then "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0wKVJD8N8WJKOZMhBYrrhdcZVH-vm70MRxw&s" else if [Team] = "NOP" then "https://upload.wikimedia.org/wikipedia/fr/e/e2/New_Orleans_Pelicans_2023.png" else if [Team] = "MIN" then "https://upload.wikimedia.org/wikipedia/fr/d/d9/Timberwolves_du_Minnesota_logo_2017.png" else if [Team] = "NYK" then "https://upload.wikimedia.org/wikipedia/fr/thumb/a/a3/Logo_Knicks_New_York_-_2011.svg/2525px-Logo_Knicks_New_York_-_2011.svg.png" else if [Team] = "ORL" then "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqdPY26Rco9Cp8-TsNUt-KZDHtq8k1TVpRHA&s" else if [Team] = "PHI" then "https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Philadelphia_76ers_logo.svg/1200px-Philadelphia_76ers_logo.svg.png" else if [Team] = "PHX" then "https://upload.wikimedia.org/wikipedia/fr/5/56/Phoenix_Suns_2013.png" else if [Team] = "CLE" then "https://upload.wikimedia.org/wikipedia/fr/thumb/3/36/Logo_Cavaliers_Cleveland_-_2022.svg/2381px-Logo_Cavaliers_Cleveland_-_2022.svg.png" else if [Team] = "DAL" then "https://logodownload.org/wp-content/uploads/2021/07/dallas-mavericks-logo-1.png" else if [Team] = "IND" then "https://upload.wikimedia.org/wikipedia/fr/thumb/c/cf/Pacers_de_l%27Indiana_logo.svg/1200px-Pacers_de_l%27Indiana_logo.svg.png" else if [Team] = "LAC" then "https://upload.wikimedia.org/wikipedia/en/thumb/e/ed/Los_Angeles_Clippers_%282024%29.svg/1200px-Los_Angeles_Clippers_%282024%29.svg.png" else if [Team] = "LAL" then "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Los_Angeles_Lakers_logo.svg/2560px-Los_Angeles_Lakers_logo.svg.png" else if [Team] = "MIL" then "https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/Milwaukee_Bucks_logo.svg/1200px-Milwaukee_Bucks_logo.svg.png" else if [Team] = "HOU" then "https://upload.wikimedia.org/wikipedia/fr/e/e1/Houston_Rockets_logo_2019.png" else if [Team] = "GSW" then "https://upload.wikimedia.org/wikipedia/en/thumb/0/01/Golden_State_Warriors_logo.svg/1200px-Golden_State_Warriors_logo.svg.png" else if [Team] = "WAS" then "https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Washington_Wizards_logo.svg/1200px-Washington_Wizards_logo.svg.png" else if [Team] = "CHI" then "https://upload.wikimedia.org/wikipedia/fr/thumb/d/d1/Bulls_de_Chicago_logo.svg/1200px-Bulls_de_Chicago_logo.svg.png" else if [Team] = "POR" then "https://logo-marque.com/wp-content/uploads/2020/08/Portland-Trail-Blazers-logo.png" else if [Team] = "SAS" then "https://upload.wikimedia.org/wikipedia/fr/0/0e/San_Antonio_Spurs_2018.png" else if [Team] = "TOR" then "https://upload.wikimedia.org/wikipedia/en/thumb/3/36/Toronto_Raptors_logo.svg/200px-Toronto_Raptors_logo.svg.png" else if [Team] = "MEM" then "https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Memphis_Grizzlies.svg/1200px-Memphis_Grizzlies.svg.png" else if [Team] = "SAC" then "https://upload.wikimedia.org/wikipedia/fr/9/95/Kings_de_Sacramento_logo.svg" else if [Team] = "CHO" then "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIyBMZ2kL2jU6VAcV0sGmyPm87wjF3LiIBBA&s" else if [Team] = "DET" then "https://upload.wikimedia.org/wikipedia/commons/3/39/Logo_of_the_Detroit_Pistons.png" else if [Team] = "UTA" then "https://logo-marque.com/wp-content/uploads/2020/08/Utah-Jazz-logo.png" else null),
+				    #"Colonnes supprimées" = Table.RemoveColumns(#"Colonne conditionnelle ajoutée",{""}),
+				    #"Valeur remplacée" = Table.ReplaceValue(#"Colonnes supprimées",",",".",Replacer.ReplaceText,{"Player"}),
+				    #"Lignes filtrées" = Table.SelectRows(#"Valeur remplacée", each ([Age] <> null))
+				in
+				    #"Lignes filtrées"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

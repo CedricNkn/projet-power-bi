@@ -1,0 +1,20 @@
+relationship 82e7485f-c289-418f-94e5-a7abdfb70d63
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Joueurs.'Birth Date'
+	toColumn: LocalDateTable_e835b675-f6b4-4779-93d6-a65da6205ad1.Date
+
+relationship 0dd2c96c-8a50-dc95-1ef9-06d83ce7eef9
+	crossFilteringBehavior: bothDirections
+	fromColumn: Stats_playoff_pergame_joueurs_NBA.Player
+	toColumn: Joueurs.Player
+
+relationship eb80c1f3-44a9-353b-4ce6-7070ed62d8ee
+	crossFilteringBehavior: bothDirections
+	fromColumn: stats_saisonreguliere_par_match_joueur.Player
+	toColumn: Joueurs.Player
+
+relationship 661a8ffe-7381-c4b0-e27a-d8140251e5ba
+	crossFilteringBehavior: bothDirections
+	fromColumn: Stats_NCAA.Player
+	toColumn: Joueurs.Player
+

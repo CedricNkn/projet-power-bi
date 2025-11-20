@@ -1,0 +1,160 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "0e2122bbe07e2ca2f56c",
+  "position": {
+    "x": 452,
+    "y": 678,
+    "z": 13000,
+    "height": 360,
+    "width": 252,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Stats_playoff_pergame_joueurs_NBA"
+                    }
+                  },
+                  "Property": "Player"
+                }
+              },
+              "queryRef": "Stats_playoff_pergame_joueurs_NBA.Player",
+              "nativeQueryRef": "Player"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Stats_playoff_pergame_joueurs_NBA"
+                    }
+                  },
+                  "Property": "Pos"
+                }
+              },
+              "queryRef": "Stats_playoff_pergame_joueurs_NBA.Pos",
+              "nativeQueryRef": "Pos"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Joueurs"
+                        }
+                      },
+                      "Property": "Wt"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Avg(Joueurs.Wt)",
+              "nativeQueryRef": "Wt",
+              "displayName": "Wt"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Joueurs"
+                    }
+                  },
+                  "Property": "Ht"
+                }
+              },
+              "queryRef": "Joueurs.Ht",
+              "nativeQueryRef": "Ht"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Stats_playoff_pergame_joueurs_NBA"
+                  }
+                },
+                "Property": "Player"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "imageHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "75D"
+                }
+              }
+            },
+            "imageWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "75D"
+                }
+              }
+            },
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

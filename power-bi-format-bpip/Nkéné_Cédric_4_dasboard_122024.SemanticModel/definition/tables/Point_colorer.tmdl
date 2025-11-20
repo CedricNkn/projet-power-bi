@@ -1,0 +1,35 @@
+table Point_colorer
+	lineageTag: 881b06d7-9374-45d5-919e-cfb17c87f9ec
+
+	calculationGroup
+
+		calculationItem 'Selected Player' =
+				
+				CALCULATE(
+				    SELECTEDMEASURE(),
+				    TREATAS(
+				        DISTINCT(Joueurs[Player]),
+				        Dim_Joueur[Player]
+				    )
+				)
+
+		calculationItem AllPlayers = SELECTEDMEASURE()
+
+	column 'Colonne du groupe de calcul'
+		dataType: string
+		lineageTag: a7e933b7-5699-4606-812b-fbd90e77301f
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		formatString: 0
+		lineageTag: d4a09960-1d37-49d1-ad3c-30647faab525
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

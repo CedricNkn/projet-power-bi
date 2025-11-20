@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 911.64549469038843,
+            "y": 0
+          },
+          "nodeIndex": "Stats_playoff_pergame_joueurs_NBA",
+          "nodeLineageTag": "a83139fb-698b-41e6-b7dc-d4adaf87f282",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1295.0980682594645,
+            "y": 768.12590910725567
+          },
+          "nodeIndex": "stats_saisonreguliere_par_match_joueur",
+          "nodeLineageTag": "994dfb5f-b302-42a4-85ba-df933c8547ce",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 399.32288768899605,
+            "y": 474.18886366088356
+          },
+          "nodeIndex": "Joueurs",
+          "nodeLineageTag": "73617e23-d8e0-457f-be40-ecd4f09c9813",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1299.6177232739415,
+            "y": 433.99734734674161
+          },
+          "nodeIndex": "Stats_NCAA",
+          "nodeLineageTag": "9a0bb551-070b-42d0-bcff-aa5a7c2937fa",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1878.8566796740611,
+            "y": 186.88771022771471
+          },
+          "nodeIndex": "MesuresSelection",
+          "nodeLineageTag": "d32a4caa-ee71-430e-b1f0-dd8c778ff2d3",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1866.3730814757828,
+            "y": 436.55967419328351
+          },
+          "nodeIndex": "Dim_Joueur",
+          "nodeLineageTag": "d4826c50-0198-430c-955f-a05c178850cc",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1798.9616512050793,
+            "y": 829.590582664047
+          },
+          "nodeIndex": "Point_colorer",
+          "nodeLineageTag": "881b06d7-9374-45d5-919e-cfb17c87f9ec",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 2
+        }
+      ],
+      "name": "Toutes les tables",
+      "zoomValue": 40.052554724883151,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Toutes les tables",
+  "defaultDiagram": "Toutes les tables"
+}

@@ -1,0 +1,27 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Stats_playoff_pergame_joueurs_NBA","stats_saisonreguliere_par_match_joueur","Joueurs","Stats_NCAA"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["CalcGroup","DevMode"]
+
+ref table DateTableTemplate_a8952d43-9e16-49bf-9c03-4734441728af
+ref table Stats_playoff_pergame_joueurs_NBA
+ref table stats_saisonreguliere_par_match_joueur
+ref table Joueurs
+ref table LocalDateTable_e835b675-f6b4-4779-93d6-a65da6205ad1
+ref table Stats_NCAA
+ref table MesuresSelection
+ref table Dim_Joueur
+ref table Point_colorer
+
+ref cultureInfo fr-FR
+

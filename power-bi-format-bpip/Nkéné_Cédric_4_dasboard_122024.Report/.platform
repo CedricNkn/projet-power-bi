@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Nkéné_Cédric_4_dasboard_122024"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e30088e1-a688-40ae-83f3-e6f9306cf8bf"
+  }
+}

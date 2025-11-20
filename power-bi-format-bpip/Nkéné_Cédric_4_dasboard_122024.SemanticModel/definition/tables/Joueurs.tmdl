@@ -1,0 +1,165 @@
+table Joueurs
+	lineageTag: 73617e23-d8e0-457f-be40-ecd4f09c9813
+
+	measure JoueurSélectionné =
+			
+			VAR Joueur = SELECTEDVALUE('Joueurs'[Player], "Aucun joueur sélectionné")
+			
+			-- Récupération du poste depuis la table Stats_NCAA
+			VAR PosteA = CALCULATE(
+			    SELECTEDVALUE('Stats_NCAA'[Pos], "Non défini"),
+			    'Stats_NCAA'[Player] = Joueur
+			)
+			
+			-- Récupération du poste depuis la table stats_saisonreguliere_par_match_joueur pour la saison 2024
+			VAR PosteB = CALCULATE(
+			    SELECTEDVALUE('Joueurs'[Pos], "Non défini"),
+			    'stats_saisonreguliere_par_match_joueur'[Player] = Joueur
+			)
+			
+			-- Retour du résultat final
+			RETURN Joueur & " | Poste NCAA : " & PosteA & " | Poste NBA : " & PosteB
+		lineageTag: 0e576fa5-4f2f-4874-a934-016fd3a0aac0
+
+	measure CouleurPlayeur = IF(SELECTEDVALUE(Joueurs[Player]) = SELECTEDVALUE(Dim_Joueur[Player]), Blank(),"#ffb3b3")
+		lineageTag: 716ba9cc-777a-47ce-b266-b3c8057d0ea4
+
+	column 'No.'
+		dataType: int64
+		formatString: 0
+		lineageTag: 81794ee4-ded0-4c7a-b100-e73811469fc3
+		summarizeBy: sum
+		sourceColumn: No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column Player
+		dataType: string
+		lineageTag: d871c43b-b4ed-4f08-8cc9-76629d3d9681
+		summarizeBy: none
+		sourceColumn: Player
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pos
+		dataType: string
+		lineageTag: 4e55a6e0-e0c2-48a9-977e-6319aa4d4104
+		summarizeBy: none
+		sourceColumn: Pos
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ht
+		dataType: double
+		lineageTag: 354cc441-1e50-4893-987e-1e7cf4d2ab83
+		summarizeBy: sum
+		sourceColumn: Ht
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Wt
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c07435f-2865-4b5c-97a3-18e100c113ee
+		summarizeBy: sum
+		sourceColumn: Wt
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Birth Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 19668646-aded-492b-ae4f-53d4539f4bb1
+		summarizeBy: none
+		sourceColumn: Birth Date
+
+		variation Variation
+			isDefault
+			relationship: 82e7485f-c289-418f-94e5-a7abdfb70d63
+			defaultHierarchy: LocalDateTable_e835b675-f6b4-4779-93d6-a65da6205ad1.'Hiérarchie de dates'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Birth
+		dataType: string
+		lineageTag: c327937d-e041-4980-bb05-b23e34b3d510
+		summarizeBy: none
+		sourceColumn: Birth
+
+		annotation SummarizationSetBy = Automatic
+
+	column Exp
+		dataType: string
+		lineageTag: 163e6f25-57f5-42e3-83a3-447ceb309ac9
+		summarizeBy: none
+		sourceColumn: Exp
+
+		annotation SummarizationSetBy = Automatic
+
+	column College
+		dataType: string
+		lineageTag: 05e32402-b9a6-4f3a-b264-2fa6a7b06948
+		summarizeBy: none
+		sourceColumn: College
+
+		annotation SummarizationSetBy = Automatic
+
+	column League
+		dataType: string
+		lineageTag: 8e111d9a-ca0c-439d-adb1-638dc70b999b
+		summarizeBy: none
+		sourceColumn: League
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e86d474-69e6-47d5-8259-08ef54224a39
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: string
+		lineageTag: f697c15d-396f-4cfa-8730-060241302ddf
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Joueurs = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ZCWZ3296\OneDrive - orange.com\Bureau\OpenClasseroom\Projet 8\Table_joueurs\table_joueur_autre4.csv"),[Delimiter=";"]),
+				    #"En-têtes promus1" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus1",{{"Player", type text}, {"Pos", type text}}),
+				    #"Doublons supprimés" = Table.Distinct(#"Type modifié", {"Player"}),
+				    #"Type modifié1" = Table.TransformColumnTypes(#"Doublons supprimés",{{"Ht", type text}}),
+				    #"Valeur remplacée" = Table.ReplaceValue(#"Type modifié1","/2024","",Replacer.ReplaceText,{"Ht"}),
+				    #"Valeur remplacée1" = Table.ReplaceValue(#"Valeur remplacée","/","-",Replacer.ReplaceText,{"Ht"}),
+				    #"Type modifié2" = Table.TransformColumnTypes(#"Valeur remplacée1",{{"Wt", Int64.Type}, {"Birth Date", type date}, {"Birth", type text}, {"Exp", type text}, {"College", type text}, {"League", type text}, {"No.", Int64.Type}}),
+				    #"Âge d'insertion" = Table.AddColumn(#"Type modifié2", "Âge", each Date.From(DateTime.LocalNow()) - [Birth Date], type duration),
+				    #"Total années inséré" = Table.AddColumn(#"Âge d'insertion", "Total années", each Duration.TotalDays([Âge]) / 365, type number),
+				    #"Type modifié3" = Table.TransformColumnTypes(#"Total années inséré",{{"Total années", Int64.Type}}),
+				    #"Colonnes renommées" = Table.RenameColumns(#"Type modifié3",{{"Total années", "Age"}}),
+				    #"Valeur remplacée2" = Table.ReplaceValue(#"Colonnes renommées","-",",",Replacer.ReplaceText,{"Ht"}),
+				    #"Type modifié4" = Table.TransformColumnTypes(#"Valeur remplacée2",{{"Ht", type number}}),
+				    #"Index ajouté" = Table.AddIndexColumn(#"Type modifié4", "Index", 1, 1, Int64.Type),
+				    #"Colonnes renommées1" = Table.RenameColumns(#"Index ajouté",{{"Index", "ID"}}),
+				    #"Type modifié5" = Table.TransformColumnTypes(#"Colonnes renommées1",{{"ID", type text}}),
+				    #"Personnalisée ajoutée" = Table.AddColumn(#"Type modifié5", "PlayerID", each [Player] & [ID]),
+				    #"Colonnes supprimées" = Table.RemoveColumns(#"Personnalisée ajoutée",{"Âge", "PlayerID"})
+				in
+				    #"Colonnes supprimées"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

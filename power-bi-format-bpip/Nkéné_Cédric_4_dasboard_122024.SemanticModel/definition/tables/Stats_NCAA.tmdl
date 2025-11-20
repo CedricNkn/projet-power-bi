@@ -1,0 +1,821 @@
+table Stats_NCAA
+	lineageTag: 9a0bb551-070b-42d0-bcff-aa5a7c2937fa
+
+	measure TRB_All =
+			CALCULATE(
+			    AVERAGE('Stats_NCAA'[TRB]),
+			    ALL(Joueurs[Player])
+			)
+		lineageTag: 1165c014-1b05-418d-b3d6-aeb4d54cd30e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AfficherGraphique2P_NCAA = ```
+			
+			IF(SELECTEDVALUE(MesuresSelection[Mesure]) = "2P%", 1, 0)
+			
+			```
+		formatString: 0
+		lineageTag: 6b03dc79-54d8-42c5-a396-a5248454184d
+
+	measure AST_All = ```
+			CALCULATE(
+			    AVERAGE('Stats_NCAA'[AST]),
+			    ALL(Joueurs[Player])
+			)
+			
+			```
+		lineageTag: e97761f0-528d-4ffd-8254-cddf761b1e67
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Statistique Sélectionnée' =
+			
+			SWITCH(
+			    SELECTEDVALUE(MesuresSelection[Mesure]),
+			    "2P%", AVERAGE(Stats_NCAA[2P%]),
+			    "BLK", AVERAGE(Stats_NCAA[BLK]),
+			    "AST", AVERAGE(Stats_NCAA[AST]),
+			    "FT%", AVERAGE(Stats_NCAA[FT%]),
+			    "TRB", AVERAGE(Stats_NCAA[TRB]),
+			    "3P%", AVERAGE(Stats_NCAA[3P%]),
+			    "Aucune sélection"
+			)
+		lineageTag: 0d89832f-1572-43cf-a0ee-11b61807371c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AVG_MP =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[MP]),
+			    TREATAS(
+			        DISTINCT(Dim_Joueur[Player]),
+			        Joueurs[Player]
+			    )
+			)
+		lineageTag: 03c5ea94-ea47-47eb-a0a4-3efe68fc3334
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AVG_PTS = ```
+			
+			CALCULATE(
+			    MAX(Stats_NCAA[PTS]),
+			    TREATAS(
+			        { SELECTEDVALUE(Dim_Joueur[Player]) }, // Un seul joueur sélectionné
+			        Joueurs[Player]
+			    )
+			)
+			
+			```
+		lineageTag: 02dace14-5264-456a-9baf-5d3bb208f2c6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AVG_FGA =
+			
+			CALCULATE(
+			    MAX(Stats_NCAA[FGA]),
+			    TREATAS(
+			        { SELECTEDVALUE(Dim_Joueur[Player]) }, // Un seul joueur sélectionné
+			        Joueurs[Player]
+			    )
+			)
+		lineageTag: ccd9ef06-cb38-4a48-8f9c-8546b737fc6b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AVG_FG% =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[FG%]),
+			    TREATAS(
+			        DISTINCT(Dim_Joueur[Player]),
+			        Joueurs[Player]
+			    )
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 460b6d1d-e747-4247-95a0-f7b640016c6f
+
+	measure Moyenne_2PA =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[2PA]),
+			    TREATAS(
+			        DISTINCT(Joueurs[Player]),
+			        Dim_Joueur[Player]
+			    )
+			)
+		lineageTag: f6195d89-1d87-46e5-9516-0730edb3fbc9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AVG_2P% =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[2P%]),
+			    TREATAS(
+			        DISTINCT(Dim_Joueur[Player]),
+			        Joueurs[Player]
+			    )
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 0c7ed9e3-2dc7-4ccc-9f3a-53614644d787
+
+	measure AVG_3PA =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[3PA]),
+			    TREATAS(
+			        DISTINCT(Dim_Joueur[Player]),
+			        Joueurs[Player]
+			    )
+			)
+		lineageTag: f3da59af-fb37-41a0-a0f1-a35de1912131
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AVG_3P% =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[3P%]),
+			    TREATAS(
+			        DISTINCT(Dim_Joueur[Player]),
+			        Joueurs[Player]
+			    )
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: ab7d2585-b276-4139-b8e6-5fad9b5b60c6
+
+	measure AVG_FTA =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[FTA]),
+			    TREATAS(
+			        DISTINCT(Dim_Joueur[Player]),
+			        Joueurs[Player]
+			    )
+			)
+		lineageTag: 169d73df-c5b4-4fcc-86b5-b422a30f9594
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AVG_FT% =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[FT%]),
+			    TREATAS(
+			        DISTINCT(Dim_Joueur[Player]),
+			        Joueurs[Player]
+			    )
+			)
+		lineageTag: 96ade391-cbb3-4535-adf8-b11256de8b7c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ALL_AVG_FGA =
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[FGA]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[FGA]), ALL(Joueurs[Player]) )
+			)
+		lineageTag: 976ec24d-33c6-4bef-8095-a5f1c9c989e4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ALL_AVG_FG% =
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[FG%]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[FG%]), ALL(Joueurs[Player]) )
+			)
+		lineageTag: 81cadb0f-e61e-4f7b-857d-76a2190875ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Moyenne_FGA =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[FGA]),
+			    TREATAS(
+			        DISTINCT(Joueurs[Player]),
+			        Dim_Joueur[Player]
+			    )
+			)
+		lineageTag: abb2f8b5-c5aa-4110-9ef2-d90263246e5f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ALL_AVG_2PA = ```
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[2PA]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[2PA]), ALL(Joueurs[Player]) )
+			)
+			
+			```
+		lineageTag: 0bc80bcb-7ed6-46a2-b9ba-fe5ae07a1977
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ALL_AVG_3PA =
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[3PA]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[3PA]), ALL(Joueurs[Player]) )
+			)
+		lineageTag: cbbf79d0-d015-411e-adc7-3df865376c90
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ALL_AVG_FTA =
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[FTA]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[FTA]), ALL(Joueurs[Player]) )
+			)
+		lineageTag: f7dbd997-552b-4566-81aa-55ab7a52c1b2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ALL_AVG_2P% =
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[2P%]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[2P%]), ALL(Joueurs[Player]) )
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 77cf462e-6ee1-4b2d-a601-898e836dd994
+
+	measure ALL_AVG_3P% =
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[3P%]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[3P%]), ALL(Joueurs[Player]) )
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: bd040038-b0da-4d04-94cb-492c9f977355
+
+	measure ALL_AVG_FT% =
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[FT%]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[FT%]), ALL(Joueurs[Player]) )
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 116a7556-646b-4b70-a229-2b35123ecc81
+
+	measure ALL_AVG_AST =
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[AST]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[AST]), ALL(Joueurs[Player]) )
+			)
+		lineageTag: 1e408d41-4833-457a-b427-fd9f92aebf8f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ALL_AVG_TOV =
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[TOV]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[TOV]), ALL(Joueurs[Player]) )
+			)
+		lineageTag: 99adaabc-1d14-4426-a8c0-c5197da72952
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ALL_AVG_TRB = ```
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[TRB]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[TRB]), ALL(Joueurs[Player]) )
+			)
+			
+			```
+		lineageTag: e2bbee03-1fdc-4dd2-97b1-c6587814addc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ALL_AVG_BLK = ```
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[BLK]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[BLK]), ALL(Joueurs[Player]) )
+			)
+			
+			```
+		lineageTag: e33cc23f-78f2-429b-850a-47e109d52e08
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Moyenne_3PA =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[3PA]),
+			    TREATAS(
+			        DISTINCT(Joueurs[Player]),
+			        Dim_Joueur[Player]
+			    )
+			)
+		lineageTag: e845deb6-afe1-41a4-9d0a-27432af55ef5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Moyenne_FTA =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[FTA]),
+			    TREATAS(
+			        DISTINCT(Joueurs[Player]),
+			        Dim_Joueur[Player]
+			    )
+			)
+		lineageTag: 9b722f8e-4986-4237-a5ca-9491b643c587
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Moyenne_FG% =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[FG%]),
+			    TREATAS(
+			        DISTINCT(Joueurs[Player]),
+			        Dim_Joueur[Player]
+			    )
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 1513de0b-7270-4a76-bc94-aa85049dc5ce
+
+	measure Moyenne_2P% =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[2P%]),
+			    TREATAS(
+			        DISTINCT(Joueurs[Player]),
+			        Dim_Joueur[Player]
+			    )
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 5e8b617c-f124-4542-8a8d-52e5650eb3cb
+
+	measure Moyenne_3P% =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[3P%]),
+			    TREATAS(
+			        DISTINCT(Joueurs[Player]),
+			        Dim_Joueur[Player]
+			    )
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 3d679e67-1472-4ed9-ad1e-7ce173968aca
+
+	measure Moyenne_FT% =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[FT%]),
+			    TREATAS(
+			        DISTINCT(Joueurs[Player]),
+			        Dim_Joueur[Player]
+			    )
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: b9aecb25-adf3-4a11-90b5-9ba1a0b0304e
+
+	measure Moyenne_AST =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[AST]),
+			    TREATAS(
+			        DISTINCT(Joueurs[Player]),
+			        Dim_Joueur[Player]
+			    )
+			)
+		lineageTag: a70cc48a-843a-4d8b-950b-ee82749acfec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Moyenne_TOV =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[TOV]),
+			    TREATAS(
+			        DISTINCT(Joueurs[Player]),
+			        Dim_Joueur[Player]
+			    )
+			)
+		lineageTag: 5f387710-48a1-4fa7-9576-5609b668ad93
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Moyenne_TRB =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[TRB]),
+			    TREATAS(
+			        DISTINCT(Joueurs[Player]),
+			        Dim_Joueur[Player]
+			    )
+			)
+		lineageTag: 05f13757-b863-49e1-8cc9-7c080bcfd343
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Moyenne_BLK =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[BLK]),
+			    TREATAS(
+			        DISTINCT(Joueurs[Player]),
+			        Dim_Joueur[Player]
+			    )
+			)
+		lineageTag: 29cbde11-558a-4399-b548-b3046413e8de
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AVG_TOV =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[TOV]),
+			    TREATAS(
+			        DISTINCT(Dim_Joueur[Player]),
+			        Joueurs[Player]
+			    )
+			)
+		lineageTag: cc73906a-d973-4988-af04-7be2401de01b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AVG_AST =
+			
+			CALCULATE(
+			    AVERAGE(Stats_NCAA[AST]),
+			    TREATAS(
+			        DISTINCT(Dim_Joueur[Player]),
+			        Joueurs[Player]
+			    )
+			)
+		lineageTag: d6a65d76-a646-421b-87ab-9eef7fed84ef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MoyennePtsParJoueur = AVERAGEX(VALUES(Stats_NCAA[Player]), AVERAGE(Stats_NCAA[PTS]))
+		lineageTag: 280d63c4-7e09-4108-8972-bbb3b49c183c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ALL_AVG_PTS =
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[PTS]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[PTS]), ALL(Joueurs[Player]) )
+			)
+		lineageTag: 6b6662d0-4043-466d-9f60-eee867c40f64
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PER_NCAA = ```
+			(Stats_NCAA[ALL_AVG_PTS] + Stats_NCAA[ALL_AVG_TRB] + Stats_NCAA[ALL_AVG_AST] + Stats_NCAA[ALL_AVG_STL] + Stats_NCAA[ALL_AVG_BLK] - Stats_NCAA[ALL_AVG_TOV]) / Stats_NCAA[ALL_AVG_MP]
+			
+			```
+		lineageTag: 2f0cb379-9d4e-47bb-98d7-7d03d70bd9d1
+
+	measure ALL_AVG_MP = ```
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[MP]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[MP]), ALL(Joueurs[Player]) )
+			)
+			
+			```
+		lineageTag: cb55e604-c889-4560-891b-887565b6defa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ALL_AVG_STL = ```
+			IF(
+			    ISBLANK( CALCULATE( AVERAGE('Stats_NCAA'[STL]), ALL(Joueurs[Player]) ) ),
+			    0,
+			    CALCULATE( AVERAGE('Stats_NCAA'[STL]), ALL(Joueurs[Player]) )
+			)
+			
+			```
+		lineageTag: e5d303af-165d-4ec8-83c6-4f52ab2064eb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Rk
+		dataType: int64
+		formatString: 0
+		lineageTag: ae4542eb-1794-4daf-a286-401d64691bb7
+		summarizeBy: sum
+		sourceColumn: Rk
+
+		annotation SummarizationSetBy = Automatic
+
+	column Player
+		dataType: string
+		lineageTag: c32c63a9-8191-486e-baf8-e34e7e6310bc
+		summarizeBy: none
+		sourceColumn: Player
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pos
+		dataType: string
+		lineageTag: 3a06d279-1a55-4342-b9f1-e31151feb536
+		summarizeBy: none
+		sourceColumn: Pos
+
+		annotation SummarizationSetBy = Automatic
+
+	column G
+		dataType: int64
+		formatString: 0
+		lineageTag: 46338cfa-93a6-40ab-af60-199b780e65bb
+		summarizeBy: sum
+		sourceColumn: G
+
+		annotation SummarizationSetBy = Automatic
+
+	column GS
+		dataType: int64
+		formatString: 0
+		lineageTag: 003b916a-e4dc-48a6-883c-93cb88fb47de
+		summarizeBy: sum
+		sourceColumn: GS
+
+		annotation SummarizationSetBy = Automatic
+
+	column FG
+		dataType: double
+		lineageTag: 05de8aeb-90e4-4622-ad64-5317485ea223
+		summarizeBy: sum
+		sourceColumn: FG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FGA
+		dataType: double
+		lineageTag: efaca1b1-d0aa-48c7-8043-3d2140223e74
+		summarizeBy: sum
+		sourceColumn: FGA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FG%
+		dataType: double
+		lineageTag: c84100b5-1743-42df-9ec9-6318f48ae5f9
+		summarizeBy: sum
+		sourceColumn: FG%
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 3P
+		dataType: double
+		lineageTag: 73305f6b-d025-48ff-82fa-fbe5889d3468
+		summarizeBy: sum
+		sourceColumn: 3P
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 3PA
+		dataType: double
+		lineageTag: 5cafad25-e253-4ede-81ce-281b62dee9f6
+		summarizeBy: sum
+		sourceColumn: 3PA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2P
+		dataType: double
+		lineageTag: f1c2a0a0-2355-41db-991c-cf36b7a71196
+		summarizeBy: sum
+		sourceColumn: 2P
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2PA
+		dataType: double
+		lineageTag: 47b1f47b-61ba-445b-b8e9-39ee2dd3c9b8
+		summarizeBy: sum
+		sourceColumn: 2PA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column eFG%
+		dataType: double
+		lineageTag: a695aa67-1a20-4833-87dc-40d7bb69994c
+		summarizeBy: sum
+		sourceColumn: eFG%
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FT
+		dataType: double
+		lineageTag: cd49312a-0bce-4c14-bfd6-d76e6fba1c4b
+		summarizeBy: sum
+		sourceColumn: FT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FTA
+		dataType: double
+		lineageTag: e8b4b746-29db-4a38-bccb-4231569f5d5c
+		summarizeBy: sum
+		sourceColumn: FTA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FT%
+		dataType: double
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: ac32407d-20c8-47ce-a082-0b128fe2b87d
+		summarizeBy: sum
+		sourceColumn: FT%
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORB
+		dataType: double
+		lineageTag: 5a20ba9f-6fa8-4fd6-b284-14b71e086966
+		summarizeBy: sum
+		sourceColumn: ORB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DRB
+		dataType: double
+		lineageTag: 36da811c-28d0-4ffb-9511-46f46e9dcd08
+		summarizeBy: sum
+		sourceColumn: DRB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TRB
+		dataType: double
+		lineageTag: 8d1c6e59-19a7-4a51-9510-e51b8223c2d8
+		summarizeBy: sum
+		sourceColumn: TRB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AST
+		dataType: double
+		lineageTag: 8bf2cbb9-bc04-4057-a905-51bf5b1173c5
+		summarizeBy: sum
+		sourceColumn: AST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column STL
+		dataType: double
+		lineageTag: 68b1cbae-46d9-4973-9a05-00c5ff432da0
+		summarizeBy: sum
+		sourceColumn: STL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BLK
+		dataType: double
+		lineageTag: b0eff441-7742-4e75-af92-09f6ee5ed52c
+		summarizeBy: sum
+		sourceColumn: BLK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOV
+		dataType: double
+		lineageTag: 80584fa8-881e-46ea-9778-421c39805452
+		summarizeBy: sum
+		sourceColumn: TOV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PF
+		dataType: double
+		lineageTag: 101434be-5874-4975-8ae1-4f6721b3f4fd
+		summarizeBy: sum
+		sourceColumn: PF
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PTS
+		dataType: double
+		lineageTag: 421af09a-3e56-4857-9f41-75ed151a4d49
+		summarizeBy: sum
+		sourceColumn: PTS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Awards
+		dataType: string
+		lineageTag: 7a1c5d62-5a19-4469-a91f-f8d0cde24f66
+		summarizeBy: none
+		sourceColumn: Awards
+
+		annotation SummarizationSetBy = Automatic
+
+	column Team
+		dataType: string
+		lineageTag: 2affdef9-c876-488e-a741-e3667c812ad9
+		summarizeBy: none
+		sourceColumn: Team
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season
+		dataType: string
+		lineageTag: 42c9bf50-9ba0-4e14-af23-b4a75e7eab04
+		summarizeBy: none
+		sourceColumn: Season
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column MP
+		dataType: double
+		lineageTag: f3cf683c-281e-47cc-b4c4-64c1b1fd111f
+		summarizeBy: sum
+		sourceColumn: MP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 3P%
+		dataType: double
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 0961aa8a-5170-4ffa-bdbe-2cc463d7036b
+		summarizeBy: sum
+		sourceColumn: 3P%
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2P%
+		dataType: double
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: bd0af0a4-7bdb-45bf-a2f1-40a195740d57
+		summarizeBy: sum
+		sourceColumn: 2P%
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Stats_NCAA = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ZCWZ3296\OneDrive - orange.com\Bureau\OpenClasseroom\Projet 8\Stats_NCAA\TABLE_NCAA.csv"),[Delimiter=";", Columns=31, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Rk", Int64.Type}, {"Player", type text}, {"Pos", type text}, {"G", Int64.Type}, {"GS", Int64.Type}, {"MP", type number}, {"FG", type number}, {"FGA", type number}, {"FG%", type number}, {"3P", type number}, {"3PA", type number}, {"3P%", type number}, {"2P", type number}, {"2PA", type number}, {"2P%", type number}, {"eFG%", type number}, {"FT", type number}, {"FTA", type number}, {"FT%", type number}, {"ORB", type number}, {"DRB", type number}, {"TRB", type number}, {"AST", type number}, {"STL", type number}, {"BLK", type number}, {"TOV", type number}, {"PF", type number}, {"PTS", type number}, {"Awards", type text}, {"Team", type text}, {"Season", Int64.Type}}),
+				    #"Valeur remplacée" = Table.ReplaceValue(#"Type modifié",",",".",Replacer.ReplaceText,{"Player"}),
+				    #"Lignes filtrées" = Table.SelectRows(#"Valeur remplacée", each ([Player] <> "Team Totals"))
+				in
+				    #"Lignes filtrées"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

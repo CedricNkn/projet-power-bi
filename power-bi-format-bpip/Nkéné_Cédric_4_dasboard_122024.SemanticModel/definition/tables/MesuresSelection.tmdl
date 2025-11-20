@@ -1,0 +1,37 @@
+table MesuresSelection
+	lineageTag: d32a4caa-ee71-430e-b1f0-dd8c778ff2d3
+
+	measure 'Titre Graphique Dynamique' = ```
+			
+			    SELECTEDVALUE(MesuresSelection[Mesure], "Aucune sélection")
+			
+			```
+		lineageTag: 6d1c45ec-0ab7-4c18-a5ad-9708606db7ce
+
+	column Mesure
+		lineageTag: f48b5645-1e30-406c-a781-31303e5cbc6b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mesure]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MesuresSelection = calculated
+		mode: import
+		source = ```
+				DATATABLE(
+				    "Mesure", STRING,
+				    {
+				        {"2P%"},
+				        {"BLK"},
+				        {"AST"},
+				        {"3P%"},
+				        {"FT%"},
+				        {"TRB"}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = dbd4221de3bb426ba9b976cf8c2c8ed8
+

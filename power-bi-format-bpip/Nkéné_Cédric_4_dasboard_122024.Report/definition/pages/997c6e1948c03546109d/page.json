@@ -1,0 +1,249 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "997c6e1948c03546109d",
+  "displayName": "Equipes Championnes",
+  "displayOption": "ActualSize",
+  "height": 1050,
+  "width": 1270,
+  "objects": {
+    "outspace": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'champion nba.jpg'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "champion_nba14974816976505334.jpg"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Fit'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "85D"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": -0.5
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "62D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "71e895b9bb42c6766c20",
+      "target": "ce9c8fccb3ada903be44",
+      "type": "NoFilter"
+    },
+    {
+      "source": "71e895b9bb42c6766c20",
+      "target": "e4cbf291b17ce8a31499",
+      "type": "NoFilter"
+    },
+    {
+      "source": "71e895b9bb42c6766c20",
+      "target": "922e6146eef1eff78201",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e4cbf291b17ce8a31499",
+      "target": "71e895b9bb42c6766c20",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e4cbf291b17ce8a31499",
+      "target": "ce9c8fccb3ada903be44",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1725f591ff7fcad5bba0",
+      "target": "71e895b9bb42c6766c20",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c81cb2547c32f86b2d8",
+      "target": "1725f591ff7fcad5bba0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c81cb2547c32f86b2d8",
+      "target": "e4cbf291b17ce8a31499",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c81cb2547c32f86b2d8",
+      "target": "ce9c8fccb3ada903be44",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c81cb2547c32f86b2d8",
+      "target": "71e895b9bb42c6766c20",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c81cb2547c32f86b2d8",
+      "target": "0e9fd3245105c06b86c1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c81cb2547c32f86b2d8",
+      "target": "8fa4c13b610df06c0c49",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c81cb2547c32f86b2d8",
+      "target": "841c4fb6356242b501f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c81cb2547c32f86b2d8",
+      "target": "e785bf16ae4bff63752c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c81cb2547c32f86b2d8",
+      "target": "35f2c014d564c8224995",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2c81cb2547c32f86b2d8",
+      "target": "4da5dff2fad2de0b2b6c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1725f591ff7fcad5bba0",
+      "target": "ce9c8fccb3ada903be44",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1725f591ff7fcad5bba0",
+      "target": "e4cbf291b17ce8a31499",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1725f591ff7fcad5bba0",
+      "target": "0e9fd3245105c06b86c1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1725f591ff7fcad5bba0",
+      "target": "2c81cb2547c32f86b2d8",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1725f591ff7fcad5bba0",
+      "target": "8fa4c13b610df06c0c49",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1725f591ff7fcad5bba0",
+      "target": "841c4fb6356242b501f4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1725f591ff7fcad5bba0",
+      "target": "e785bf16ae4bff63752c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1725f591ff7fcad5bba0",
+      "target": "922e6146eef1eff78201",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1725f591ff7fcad5bba0",
+      "target": "4da5dff2fad2de0b2b6c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0e2122bbe07e2ca2f56c",
+      "target": "e4cbf291b17ce8a31499",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0e2122bbe07e2ca2f56c",
+      "target": "ce9c8fccb3ada903be44",
+      "type": "DataFilter"
+    },
+    {
+      "source": "71e895b9bb42c6766c20",
+      "target": "1725f591ff7fcad5bba0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "71e895b9bb42c6766c20",
+      "target": "2c81cb2547c32f86b2d8",
+      "type": "NoFilter"
+    },
+    {
+      "source": "71e895b9bb42c6766c20",
+      "target": "0e2122bbe07e2ca2f56c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e4cbf291b17ce8a31499",
+      "target": "4da5dff2fad2de0b2b6c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4da5dff2fad2de0b2b6c",
+      "target": "e4cbf291b17ce8a31499",
+      "type": "NoFilter"
+    }
+  ]
+}

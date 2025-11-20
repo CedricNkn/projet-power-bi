@@ -1,0 +1,17 @@
+table Dim_Joueur
+	lineageTag: d4826c50-0198-430c-955f-a05c178850cc
+
+	column Player
+		lineageTag: 6e811fa7-c638-43cd-89ce-6d4ca9afeed1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Joueurs[Player]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Joueur = calculated
+		mode: import
+		source = DISTINCT(Joueurs[Player])
+
+	annotation PBI_Id = b077fc8932a04bdea2de09b75dcff6e2
+
